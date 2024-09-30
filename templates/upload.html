@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AREF-I</title>
+</head>
+<body>
+    <h1>SES DOSYALARINI YÜKLE VE İNDİR</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="voice_file" accept=".wav, .mp3">
+            
+        <input type="submit" value="Upload">
+    </form>
+
+    <h2>RADYO KAYITLARI</h2>
+    <ul>
+        {% for file in files %}
+            <li><a href="{{ url_for('download', filename=file) }}">{{ file }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+{% endblock %}
+
+</html>
